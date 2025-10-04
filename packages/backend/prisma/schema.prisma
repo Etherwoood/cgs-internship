@@ -1,0 +1,95 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String   @id @default(uuid()) @db.Uuid
+  email           String   @unique
+  password        String
+  fullName        String   @map("full_name")
+  phoneNumber     String  @map("phone_number")
+  shippingAddress String  @map("shipping_address")
+  
+  role               UserRole @default(USER)
+  isVerified         Boolean  @default(false) @map("is_verified")
+  verificationToken  String?  @unique @map("verification_token")
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  orders Order[]
+
+  @@map("users")
+}
+
+model Product {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String
+  description String?
+  price       Decimal  @db.Decimal(10,2)
+  category    String
+  inStock     Int      @default(0) @map("in_stock")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  orderDetails OrderDetail[]
+
+  @@map("products")
+}
+
+model Order {
+  id              String         @id @default(uuid()) @db.Uuid
+  userId          String         @map("user_id") @db.Uuid
+  totalAmount     Decimal        @default(0) @db.Decimal(10,2) @map("total_amount")
+  paymentStatus   PaymentStatus  @default(PENDING) @map("payment_status")
+  deliveryStatus  DeliveryStatus @default(PENDING) @map("delivery_status")
+  
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  // Relations
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderDetails    OrderDetail[]
+
+  @@map("orders")
+}
+
+model OrderDetail {
+  id                String  @id @default(uuid()) @db.Uuid
+  orderId           String  @map("order_id") @db.Uuid
+  productId         String  @map("product_id") @db.Uuid
+  quantity          Int
+  priceAtPurchase   Decimal @db.Decimal(10,2) @map("price_at_purchase")
+
+  // Relations
+  order             Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product           Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("order_details")
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+enum PaymentStatus {
+  COMPLETE
+  FAILED
+  PENDING
+}
+
+enum DeliveryStatus {
+  PENDING
+  IN_TRANSIT
+  DELIVERED
+}
+

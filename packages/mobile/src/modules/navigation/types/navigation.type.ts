@@ -1,0 +1,35 @@
+import { Product, Order } from '../../../shared/types';
+
+export enum NAVIGATION_KEYS {
+	LOGIN = 'LOGIN',
+	REGISTER = 'REGISTER',
+	VERIFY = 'VERIFY',
+	SUCCESS = 'SUCCESS',
+	MAIN_TABS = 'MAIN_TABS',
+	PRODUCTS = 'PRODUCTS',
+	ORDERS = 'ORDERS',
+	SETTINGS = 'SETTINGS',
+	PRODUCT_INFORMATION = 'PRODUCT_INFORMATION',
+	CART = 'CART',
+	EDIT_CART_ITEM = 'EDIT_CART_ITEM',
+	ORDER_DETAILS = 'ORDER_DETAILS',
+	PAYMENT_SUCCESS = 'PAYMENT_SUCCESS',
+}
+
+export type RootStackParamList = {
+	[NAVIGATION_KEYS.LOGIN]: undefined;
+	[NAVIGATION_KEYS.REGISTER]: undefined;
+	[NAVIGATION_KEYS.VERIFY]: { email: string };
+	[NAVIGATION_KEYS.SUCCESS]: { userData?: unknown };
+	[NAVIGATION_KEYS.MAIN_TABS]: {
+		screen?: 'Products' | 'Orders' | 'Settings';
+	};
+	[NAVIGATION_KEYS.PRODUCTS]: undefined;
+	[NAVIGATION_KEYS.ORDERS]: undefined;
+	[NAVIGATION_KEYS.SETTINGS]: undefined;
+	[NAVIGATION_KEYS.PRODUCT_INFORMATION]: { product: Product };
+	[NAVIGATION_KEYS.CART]: undefined;
+	[NAVIGATION_KEYS.EDIT_CART_ITEM]: { product: Product };
+	[NAVIGATION_KEYS.ORDER_DETAILS]: { order: Order };
+	[NAVIGATION_KEYS.PAYMENT_SUCCESS]: undefined;
+};

@@ -1,0 +1,6 @@
+node_modules
+dist
+packages/mobile/metro.config.js
+packages/mobile/babel.config.js
+packages/*/metro.config.js
+packages/*/babel.config.js

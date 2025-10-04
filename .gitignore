@@ -1,0 +1,9 @@
+dist
+node_modules
+.DS_Store
+package-lock.json
+# dotenv
+.env
+**/.env
+.env.*.local*.backup
+*.env.backup
