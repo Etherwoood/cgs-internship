@@ -1,14 +1,59 @@
-# CGS-team Camp Project
+# 🏪 E-commerce Platform
 
-## Useful links and technologies
+Backend API and mobile app built during CGS-team internship.
 
-[Corporate Codestyle](https://github.com/CodeGeneration-2020/code-generation-code-style) <br />
-[Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction) <br />
-[Blueprint](https://blueprintjs.com/docs/#blueprint/getting-started) <br />
-[React Final Form](https://final-form.org/docs/react-final-form/getting-started) <br />
-[Formik](https://formik.org/docs/overview) <br />
-[React Hook Form](https://www.react-hook-form.com/get-started) <br />
-[Typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) <br />
-[Passport](http://www.passportjs.org/) <br />
-[Emotion CSS](https://emotion.sh/docs/introduction) <br />
-[Prisma](https://www.prisma.io/docs/orm/overview/introduction) <br />
+![NestJS](https://img.shields.io/badge/Backend-NestJS-blue)
+![React Native](https://img.shields.io/badge/Mobile-React%20Native-blue)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
+
+## 🚀 Features
+
+- **Authentication** - JWT-based auth with email verification
+- **Product Catalog** - Search, filter, and browse products
+- **Shopping Cart** - Add/remove items, quantity management
+- **Order Management** - Complete order processing workflow
+- **Mobile App** - Cross-platform iOS/Android app
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Backend** | NestJS, PostgreSQL, Prisma ORM |
+| **Mobile** | React Native, Expo |
+| **Auth** | JWT, Passport.js |
+| **Email** | SendGrid |
+
+## 🚀 Quick Start
+
+1. **Clone and install**
+```bash
+git clone https://github.com/Etherwoood/cgs-internship.git
+cd cgs-internship
+npm install
+```
+
+2. **Setup environment**
+```bash
+cp packages/backend/config.example.env packages/backend/.env
+cp packages/mobile/config.example.env packages/mobile/.env
+```
+
+3. **Start PostgreSQL with Docker**
+```bash
+cd packages/backend
+docker-compose up -d
+```
+
+4. **Start development**
+```bash
+# Backend
+cd packages/backend && npm run start:dev
+
+# Mobile
+cd packages/mobile && npm start
+```
+
+
+
+---
+**Built during CGS-team internship** | **Author:** [Etherwoood](https://github.com/Etherwoood)
